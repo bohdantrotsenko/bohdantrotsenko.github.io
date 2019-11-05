@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Bohdan Trotsenko</title>
+  <meta name="keywords" content="Bohdan Trotsenko, spectrogram, spectrum, speech recognition" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10199867-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-10199867-3');
+  </script>
+</head>
+
+<body style="background-color: #DADADA;">
+  <div class="container">
+    <h1>Hi. I'm Bohdan&nbsp;Trotsenko</h1>
+
+    <div>And this is how my name looks on <a href="img/bohdan.webp" target="blank">spectrum</a></div>
+
+    <img src="img/bohdan.webp" class="img-fluid"
+         onerror='this.onerror = null; this.src="img/bohdan.jpg"'
+    >
+
+    <h2>I have invented the simplest acoustic model:</h2>
+
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6sFFrHnzNhc" frameborder="0"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <p>A bit of explanation: <ul>
+        <li>What's on video is frequencies (spectrum), lower frequencies shown lower.</li>
+        <li>Blue part is the <i>preview</i> (seeing frequencies as they are played
+          seem to be very "sudden" to perceive).</li>
+        <li>Frequencies are normalized - so if you see the voice part "take over" and engine/music/other sounds fade
+          away
+          that's because voice part is more significant and normalization makes other sounds fade.</li>
+      </ul>
+    </p>
+
+    <p>
+      I have more videos on <a href="https://www.youtube.com/user/modosansreves">my youtube channel</a>
+      and on <a href="https://www.facebook.com/Bohdan-Trotsenkos-Spectrogram-102126787983868/">the dedicated facebook
+        page</a>.
+    </p>
+
+    <h3>Questions and answers</h3>
+    <dl>
+      <dt>The simplest?</dt>
+      <dd>
+        <p>I can probably write it in about 30 lines of quite simple Python (no dependencies) &ndash; it's that simple.
+        </p>
+
+        <p>It's so simple that sometimes I think it could be found with brute force of simplest algorithms over an input.
+          But that's just an author's bias, of course: I had to go through a couple hundred non-working ones over months
+          to find this one.</p>
+
+        <p>It's not <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Fourier</a>. (Wow, I compete with
+          Fourier!).</p>
+
+        <p>It's extremely lightweight &ndash; I can produce a spectrum using less than 10 * <a href="#"
+            data-toggle="tooltip" title="N denotes number of samples, F - number of frequencies">N * F</a>
+            <a href="#" data-toggle="tooltip" title="additions, multiplications, sqrt, log, arctan and the like">operations</a> <i>overall</i>.
+          It's highly likely that I have invented the most efficient/lightweight spectrum algorithm <u>ever</u>!
+        </p>
+
+        <p>It's also conceptually the simplest. I think I could convey the idea in <b>5</b> sentences
+          to anyone who passed <a href="https://g.co/codejam">codejam</a>'s round 1 (or, maybe, round 2).
+          A4 sheet of information would be enough for a 14 year old (probably, a bit math inclined).
+        </p>
+
+      </dd>
+
+      <dt>More on comparison with FFT</dt>
+      <dd>Fourier transform works perfectly on a periodic signal.
+        In order to be applied to sound, a 'sliding window trick' is used.
+        Moreover: as a random window doesn't perfectly match at ends, another 'smoothing' must be used. <br/>
+        Pick a window too wide, and you're likely to lose high frequencies.
+        Pick a window too narrow, and you're restricted from analyzing low frequencies. <br/>
+
+        All this suggests that there's a better way. <br/>
+
+        Please compare analysis of modem handshake sound: <a href="https://www.youtube.com/watch?v=vvr9AMWEU-c">FFT</a>
+        vs <a href="https://www.youtube.com/watch?v=fMEFxu82Po0">mine</a>.<br/>
+        Or this <a href="https://www.youtube.com/watch?v=_FatxGN3vAM">FFT</a> vs <a href="https://www.youtube.com/watch?v=UeaVkoZe-0M">mine</a>.<br />
+
+        Or <a href="https://www.facebook.com/102126787983868/videos/546199572647609/">violin sound decomposed</a>. <br/>
+
+        Facebook's <a href="https://research.fb.com/downloads/wav2letter/">wav2letter</a> uses <a href="https://arxiv.org/pdf/1609.03193.pdf">25 ms sliding window and 10 ms stride</a>.
+        I simply don't need this. <br/>
+
+        While technically FFT can be computed <i>O(N&middot;logN)</i> at best, given that the sliding window's length is fixed,
+        that's <i>O(N)</i> time complexity to process the signal.
+        However, in practice my method would need <a href="#" data-toggle="tooltip" title="not 1000-10000 as I thought before">10-100</a>
+        times less operations to build a spectrogram.
+        
+      </dd>
+
+      <dt>More on comparison with ...</dt>
+      <dd>I tried searching the web for existing solution. What I have is far from
+        <a href="https://en.wikipedia.org/wiki/Power_spectrum">log power spectrum</a> or
+        <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Mel-frequency cepstrum</a> or
+        <a href="https://en.wikipedia.org/wiki/Linear_predictive_coding">linear predictive coding</a>
+        (which is a bit obvious after the statement on simplicity, but I'm constantly asked about this).
+      </dd>
+
+      <dt>Possible applications</dt>
+      <dd>The algorithm can largely improve the quality of home speakers and online speech-to-text services.
+        It can largely save battery on phones (especially for hot phrase detection)
+        and even enable speech recognition on watches and earbuds!
+         <br/>
+
+        It's certainly useful for all kinds of signal processing. E.g. real time software-defined radios could raise their limits.
+      </dd>
+
+      <dt>Can be improved</dt>
+      <dd>... but I need to spend additional 100-200 hours on research.</dd>
+
+      <dt>Prospects</dt>
+      <dd>
+        <p>Plan A. Cooperate with a Fortune 500 company; potentially patent the algorithm (which is questionable given the simplicity);
+        grant license for 5 years.</p>
+        <p>Plan B. Proceed with creating a speech-to-text service.</p>
+      </dd>
+
+      <dt>Can I try it?</dt>
+      <dd><a href="https://github.com/bohdantrotsenko/spectrum">Yes.</a></dd>
+    </dl>
+
+    <h3>Contact</h3>
+
+    <p>Me in social networks: <br />
+      My <a href="https://www.facebook.com/bohdan.trotsenko">facebook&nbsp;page</a>,
+      my <a href="https://twitter.com/bohdantrotsenko">tweets</a>,
+      <a href="https://www.linkedin.com/in/bohdantrotsenko">LinkedIn</a>,
+      my <a href="https://stackoverflow.com/users/58768/">stackoverflow&nbsp;page</a>,
+      my <a href="https://github.com/bohdantrotsenko">GitHub</a>,
+      <a href="cv.pdf">CV</a> and
+      my email: <a id="eml" href="mailto:s.pam@trotsenko.com.ua">spambox (wait for javascript)</a>.
+    </p>
+
+    <p>
+      Other (and somewhat outdated links): <br />
+      Old <a href="https://modosansreves-coding.blogspot.com">coding&nbsp;blog</a>,
+      <a href="https://www.coursera.org/user/fa7f1168f2c8182d454808a693a3a24d">coursera's&nbsp;page</a>,
+      <a href="https://www.goodreads.com/user/show/15181572-bohdan-trotsenko">goodreads</a> and
+      old <a href="https://btrotsenko-en.blogspot.com">thoughts on life</a>.
+    </p>
+
+    Updated on: Feb 22, 2020.
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    (function () {
+      var a = document.getElementById("eml");
+      var s = "bohdan" + "@" + "trotsenko.com.ua";
+      a.setAttribute("href", "mailto:" + s);
+      a.innerHTML = s;
+    })();
+  </script>
+</body>
+
+</html>

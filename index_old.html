@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bohdan Trotsenko</title>
+        <meta name=description content="Home page of Bohdan Trotsenko">
+        <link rel="canonical" href="https://www.trotsenko.com.ua/">
+    </head>
+<body style="margin: 0px;">
+    <div id="bgDiv" style="position: fixed; left:0px; top:0px;">
+        <img id="bgImg" src="images/2015_09_09_bg.webp"/>
+    </div>
+    
+    <div style="position: absolute; left:20px; top:0px; overflow: auto; margin: 0px;">
+        <div id="main" style="margin:10px; padding: 1px 10px; border-radius: 15px; background: rgba(255, 255, 255, .5);">
+            <p><b>Bohdan Trotsenko</b> <br/>
+                  Software developer        
+            </p>
+            <p>Me in development, studying and professional life: <br/>
+            <a href="https://modosansreves-coding.blogspot.com">My&nbsp;coding&nbsp;blog</a>
+            <a href="https://stackoverflow.com/users/58768/">Stackoverflow&nbsp;page</a>
+            <a href="https://github.com/bohdantrotsenko">GitHub</a>
+            <a href="https://www.coursera.org/user/fa7f1168f2c8182d454808a693a3a24d">coursera's&nbsp;page</a>
+            <a href="https://www.linkedin.com/in/bohdantrotsenko">LinkedIn</a>
+            </p>
+            <p>Me in social networks: </br>
+            <a href="https://www.goodreads.com/user/show/15181572-bohdan-trotsenko">Goodreads</a>
+            <a href="https://www.facebook.com/bohdan.trotsenko">My&nbsp;facebook&nbsp;page</a>
+            <a href="https://twitter.com/bohdantrotsenko">My&nbsp;tweets</a>
+            <a href="https://btrotsenko-en.blogspot.com">Thoughts</a>
+            or just write me to <a id="eml" href="mailto:s.pam@trotsenko.com.ua">spambox (wait for javascript)</a>
+            </p>
+            <p>I've invented a new (and efficient) method of <a href="https://www.facebook.com/Bohdan-Trotsenkos-Spectrogram-102126787983868/">producing spectrogram</a>!</p>
+        </div>
+        
+        <div id="spacer"></div>
+        
+        <div id="footer" style="padding: 0px 0px 0px 20px;">updated on January 8, 2020</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+/* <![CDATA[ */
+    var $main = $('#main');
+    var $spacer = $('#spacer');
+    var $footer = $('#footer');
+    var $bgDiv = $('#bgDiv');
+    var $bgImg = $('#bgImg');
+    var $window = $(window);
+
+    function onResize() {
+        $wndW = $window.width();  // img.w = 4128
+        $wndH = $window.height(); // img.h = 2322
+        $w2 = 4128 * $wndH / 2322;
+        $h2 = 2322 * $wndW / 4128;
+        $w = Math.max($wndW, $w2);
+        $h = Math.max($wndH, $h2);                
+        
+        $left = Math.min(Math.max(($wndW - $w2) / 2.0, -0.087 * $w), 0.0);
+        $top = Math.min(Math.max(($wndH - $h2) / 2.0, -0.32 * $h), 0.0);
+        
+        $bgImg.css( {
+            width: $w,
+            height: $h
+        });
+        
+        $bgDiv.css( {
+            left: $left,
+            top: $top,
+        });
+
+        $spacerH = Math.max(0.0, $wndH - $main.outerHeight(true) - $footer.outerHeight(true) * 3 + 10);
+
+        $spacer.css( {
+            height: $spacerH,
+        });
+    }
+
+    (function(){
+        var a = document.getElementById("eml");
+        var s = "bohdan" + "@" + "trotsenko.com.ua";
+        a.setAttribute("href", "mailto:" + s);
+        a.innerHTML = s;
+
+        $window.on("load resize", onResize);
+    })();
+
+    /* GAnalytics*/
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-10199867-3', 'auto');
+    ga('send', 'pageview');
+/* ]]> */
+    </script>
+</body>
+</html>
