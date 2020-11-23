@@ -10,8 +10,8 @@
   <meta name="keywords" content="Bohdan Trotsenko, spectrogram, spectrum, speech recognition" />
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10199867-3"></script>
@@ -30,9 +30,7 @@
 
     <div>And this is how my name looks on <a href="img/bohdan.webp" target="blank">spectrum</a></div>
 
-    <img src="img/bohdan.webp" class="img-fluid"
-         onerror='this.onerror = null; this.src="img/bohdan.jpg"'
-    >
+    <img src="img/bohdan.webp" class="img-fluid" onerror='this.onerror = null; this.src="img/bohdan.jpg"'>
 
     <h2>I have invented the simplest acoustic model:</h2>
 
@@ -41,14 +39,15 @@
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <p>A bit of explanation: <ul>
-        <li>What's on video is frequencies (spectrum), lower frequencies shown lower.</li>
-        <li>Blue part is the <i>preview</i> (seeing frequencies as they are played
-          seem to be very "sudden" to perceive).</li>
-        <li>Frequencies are normalized - so if you see the voice part "take over" and engine/music/other sounds fade
-          away
-          that's because voice part is more significant and normalization makes other sounds fade.</li>
-      </ul>
+    <p>A bit of explanation:
+    <ul>
+      <li>What's on video is frequencies (spectrum), lower frequencies shown lower.</li>
+      <li>Blue part is the <i>preview</i> (seeing frequencies as they are played
+        seem to be very "sudden" to perceive).</li>
+      <li>Frequencies are normalized - so if you see the voice part "take over" and engine/music/other sounds fade
+        away
+        that's because voice part is more significant and normalization makes other sounds fade.</li>
+    </ul>
     </p>
 
     <p>
@@ -64,18 +63,21 @@
         <p>I can probably write it in about 30 lines of quite simple Python (no dependencies) &ndash; it's that simple.
         </p>
 
-        <p>It's so simple that sometimes I think it could be found with brute force of simplest algorithms over an input.
+        <p>It's so simple that sometimes I think it could be found with brute force of simplest algorithms over an
+          input.
           But that's just an author's bias, of course: I had to go through a couple hundred non-working ones over months
           to find this one.</p>
 
-        <p>It's not <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Fourier</a>. (Wow, I compete with
-          Fourier!).</p>
+        <p>It's not <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Fourier</a> (Wow, I compete with
+          Fourier!) or <a href="https://en.wikipedia.org/wiki/Gabor_transform">Gabor transform"</a> (for the same reason).</p>
 
-        <p>It's extremely lightweight &ndash; I can produce a spectrum using less than 10 * <a href="#"
+        <p><s>It's extremely lightweight &ndash; I can produce a spectrum using less than 10 * <a href="#"
             data-toggle="tooltip" title="N denotes number of samples, F - number of frequencies">N * F</a>
-            <a href="#" data-toggle="tooltip" title="additions, multiplications, sqrt, log, arctan and the like">operations</a> <i>overall</i>.
-          It's highly likely that I have invented the most efficient/lightweight spectrum algorithm <u>ever</u>!
-        </p>
+          <a href="#" data-toggle="tooltip"
+            title="additions, multiplications, sqrt, log, arctan and the like">operations</a> <i>overall</i>.
+          It's highly likely that I have invented the most efficient/lightweight spectrum algorithm <u>ever</u>!</s><br />
+        It is very lightweight, but {the current edition} is comparable to FFT.
+      </p>
 
         <p>It's also conceptually the simplest. I think I could convey the idea in <b>5</b> sentences
           to anyone who passed <a href="https://g.co/codejam">codejam</a>'s round 1 (or, maybe, round 2).
@@ -87,26 +89,31 @@
       <dt>More on comparison with FFT</dt>
       <dd>Fourier transform works perfectly on a periodic signal.
         In order to be applied to sound, a 'sliding window trick' is used.
-        Moreover: as a random window doesn't perfectly match at ends, another 'smoothing' must be used. <br/>
+        Moreover: as a random window doesn't perfectly match at ends, another 'smoothing' must be used. <br />
         Pick a window too wide, and you're likely to lose high frequencies.
-        Pick a window too narrow, and you're restricted from analyzing low frequencies. <br/>
+        Pick a window too narrow, and you're restricted from analyzing low frequencies. <br />
 
-        All this suggests that there's a better way. <br/>
+        All this suggests that there's a better way. <br />
 
         Please compare analysis of modem handshake sound: <a href="https://www.youtube.com/watch?v=vvr9AMWEU-c">FFT</a>
-        vs <a href="https://www.youtube.com/watch?v=fMEFxu82Po0">mine</a>.<br/>
-        Or this <a href="https://www.youtube.com/watch?v=_FatxGN3vAM">FFT</a> vs <a href="https://www.youtube.com/watch?v=UeaVkoZe-0M">mine</a>.<br />
+        vs <a href="https://www.youtube.com/watch?v=fMEFxu82Po0">mine</a>.<br />
+        Or this <a href="https://www.youtube.com/watch?v=_FatxGN3vAM">FFT</a> vs <a
+          href="https://www.youtube.com/watch?v=UeaVkoZe-0M">mine</a>.<br />
 
-        Or <a href="https://www.facebook.com/102126787983868/videos/546199572647609/">violin sound decomposed</a>. <br/>
+        Or <a href="https://www.facebook.com/102126787983868/videos/546199572647609/">violin sound decomposed</a>.
+        <br />
 
-        Facebook's <a href="https://research.fb.com/downloads/wav2letter/">wav2letter</a> uses <a href="https://arxiv.org/pdf/1609.03193.pdf">25 ms sliding window and 10 ms stride</a>.
-        I simply don't need this. <br/>
+        Facebook's <a href="https://research.fb.com/downloads/wav2letter/">wav2letter</a> uses <a
+          href="https://arxiv.org/pdf/1609.03193.pdf">25 ms sliding window and 10 ms stride</a>.
+        I simply don't need this. <br />
 
-        While technically FFT can be computed <i>O(N&middot;logN)</i> at best, given that the sliding window's length is fixed,
+        While technically FFT can be computed <i>O(N&middot;logN)</i> at best, given that the sliding window's length is
+        fixed,
         that's <i>O(N)</i> time complexity to process the signal.
-        However, in practice my method would need <a href="#" data-toggle="tooltip" title="not 1000-10000 as I thought before">10-100</a>
+        However, in practice my method would need <a href="#" data-toggle="tooltip"
+          title="not 1000-10000 as I thought before">10-100</a>
         times less operations to build a spectrogram.
-        
+
       </dd>
 
       <dt>More on comparison with ...</dt>
@@ -121,23 +128,23 @@
       <dd>The algorithm can largely improve the quality of home speakers and online speech-to-text services.
         It can largely save battery on phones (especially for hot phrase detection)
         and even enable speech recognition on watches and earbuds!
-         <br/>
+        <br />
 
-        It's certainly useful for all kinds of signal processing. E.g. real time software-defined radios could raise their limits.
+        It's certainly useful for all kinds of signal processing. E.g. real time software-defined radios could raise
+        their limits.
       </dd>
 
-      <dt>Can be improved</dt>
-      <dd>... but I need to spend additional 100-200 hours on research.</dd>
-
-      <dt>Prospects</dt>
+      <!-- <dt>Prospects</dt>
       <dd>
-        <p>Plan A. Cooperate with a Fortune 500 company; potentially patent the algorithm (which is questionable given the simplicity);
-        grant license for 5 years.</p>
+        <p>Plan A. Cooperate with a Fortune 500 company; potentially patent the algorithm (which is questionable given
+          the simplicity);
+          grant license for 5 years.</p>
         <p>Plan B. Proceed with creating a speech-to-text service.</p>
-      </dd>
+      </dd> -->
 
       <dt>Can I try it?</dt>
-      <dd><a href="https://github.com/bohdantrotsenko/spectrum">Yes.</a></dd>
+      <dd>No. I used to publish a web service, but it didn't receive much attention. E-mail me if you're interested.</dd>
+      <!-- <dd><a href="https://github.com/bohdantrotsenko/spectrum">Yes.</a></dd> -->
     </dl>
 
     <h3>Contact</h3>
@@ -160,21 +167,18 @@
       old <a href="https://btrotsenko-en.blogspot.com">thoughts on life</a>.
     </p>
 
-    Updated on: Feb 22, 2020.
+    Updated on: Dev 10, 2020.
   </div>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript">
+
+<script type="text/javascript">
     (function () {
       var a = document.getElementById("eml");
       var s = "bohdan" + "@" + "trotsenko.com.ua";
