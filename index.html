@@ -2,35 +2,55 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Bohdan Trotsenko</title>
-  <meta name="keywords" content="Bohdan Trotsenko, spectrogram, spectrum, speech recognition" />
+    <title>Bohdan Trotsenko</title>
+    <meta name="keywords" content="Bohdan Trotsenko, spectrogram, spectrum, speech recognition" />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10199867-3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 
-    gtag('config', 'UA-10199867-3');
-  </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10199867-3"></script>
+    <script>
+        function isIOS() {
+            const userAgent = navigator.userAgent;
+            return /iPad|iPhone|iPod/.test(userAgent);
+        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-10199867-3');
+    </script>
 </head>
 
 <body style="background-color: #DADADA;">
-  <div class="container">
-    <h1>Hi. I'm Bohdan&nbsp;Trotsenko</h1>
+    <div class="container">
+        <h1>Hi. I'm Bohdan&nbsp;Trotsenko</h1>
 
-    <h1>If you're reading this after July 1, 2025, it means I got killed by ruzzians.</h1>
+        <h3>Spectrum</h3>
+        <p>Here's a wonderful video from <a href="https://www.3blue1brown.com/">3blue1brown</a> explaining Fourier
+            transform along with its (non-fourier) spectrum decomposition.</p>
+        <div id="iOSWarning"></div>
+        <div id="player1"></div>
+        <div id="player2"></div>
 
-    <!--
+        <p>Please prefer video controls of the left (top) video.</p>
+        <p>Some people report motion sickness watching spectrogram. I may rewrite the renderer later.</p>
+        
+    <script type="text/javascript">
+        (function () {
+            var wrn = document.getElementById("iOSWarning");
+            if (isIOS()) {
+                wrn.innerHTML = "<p><b>iOS, apparently, doesn't allow simultaneous playback; Android as well as Linux/PC/Mac do fine.</b></p>";
+            }
+        })();
+    </script>
+        <!--
     <div>And this is how my name looks on <a href="img/bohdan.webp" target="blank">spectrum</a></div>
 
     <img src="img/bohdan.webp" class="img-fluid" onerror='this.onerror = null; this.src="img/bohdan.jpg"'>
@@ -151,49 +171,112 @@
     </dl>
     -->
 
-    <h3>Contact</h3>
+        <h3>Contact</h3>
 
-    <p>Me in social networks: <br />
-      My <a href="https://www.facebook.com/barbarys.borys/">facebook&nbsp;page</a>,
-      my <a href="https://twitter.com/ignoringsignals">tweets</a>,
-      my <a href="https://stackoverflow.com/users/58768/">stackoverflow&nbsp;page</a>,
-      my <a href="https://github.com/bohdantrotsenko">GitHub</a>,
-      my <a href="https://www.youtube.com/channel/UCBr34jesQ162NoSUViXyiOQ">youtube</a>
-      <a href="cv.pdf">CV</a> and
-      my email: <a id="eml" href="mailto:s.pam@trotsenko.com.ua">spambox (wait for javascript)</a>.
-    </p>
+        <p>Me in social networks: <br />
+            My <a href="https://www.facebook.com/barbarys.borys/">facebook&nbsp;page</a>,
+            my <a href="https://twitter.com/ignoringsignals">tweets</a>,
+            my <a href="https://stackoverflow.com/users/58768/">stackoverflow&nbsp;page</a>,
+            my <a href="https://github.com/bohdantrotsenko">GitHub</a>,
+            my <a href="https://www.youtube.com/channel/UCBr34jesQ162NoSUViXyiOQ">youtube</a>
+            <a href="cv.pdf">CV</a> and
+            my email: <a id="eml" href="mailto:s.pam@trotsenko.com.ua">spambox (wait for javascript)</a>.
+        </p>
 
-    <p>
-      Other (and somewhat outdated links): <br />
-      Old <a href="https://modosansreves-coding.blogspot.com">coding&nbsp;blog</a>,
-      <a href="https://www.coursera.org/user/fa7f1168f2c8182d454808a693a3a24d">coursera's&nbsp;page</a>,
-      <a href="https://www.goodreads.com/user/show/15181572-bohdan-trotsenko">goodreads</a> and
-      old <a href="https://btrotsenko-en.blogspot.com">thoughts on life</a>.
-    </p>
+        <p>
+            Other (and somewhat outdated links): <br />
+            Old <a href="https://modosansreves-coding.blogspot.com">coding&nbsp;blog</a>,
+            <a href="https://www.coursera.org/user/fa7f1168f2c8182d454808a693a3a24d">coursera's&nbsp;page</a>,
+            <a href="https://www.goodreads.com/user/show/15181572-bohdan-trotsenko">goodreads</a> and
+            old <a href="https://btrotsenko-en.blogspot.com">thoughts on life</a>.
+        </p>
 
-    <p>
-      My <a href="https://www.linkedin.com/in/bohdantrotsenko">LinkedIn</a> profile. (now restored)
-    </p>
+        <p>
+            My <a href="https://www.linkedin.com/in/bohdantrotsenko">LinkedIn</a> profile. (now restored)
+        </p>
 
-    <p>
-      If you were to need to know only one thing about ruzzia, it's this:
-      <a href="https://t.me/kazansky2017/9114">on telegram</a>,
-      <a href="https://twitter.com/den_kazansky/status/1726511571327971608">on twitter</a>. (Not safe for work content)
-    </p>
+        <hr />
+        <p>
+            If you were to need to know only one thing about ruzzia, it's this:
+            <a href="https://t.me/kazansky2017/9114">on telegram</a>,
+            <a href="https://twitter.com/den_kazansky/status/1726511571327971608">on twitter</a>. (Not safe for work
+            content)
+        </p>
 
-    Updated on: May 2nd, 2025.
-  </div>
+        <hr />
+        Updated on: May 9, 2025.
+    </div>
 
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  
-<script type="text/javascript">
-    (function () {
-      var a = document.getElementById("eml");
-      var s = "bohdan" + "@" + "trotsenko.com.ua";
-      a.setAttribute("href", "mailto:" + s);
-      a.innerHTML = s;
-    })();
-  </script>
+    <script type="text/javascript">
+        (function () {
+            var a = document.getElementById("eml");
+            var s = "bohdan" + "@" + "trotsenko.com.ua";
+            a.setAttribute("href", "mailto:" + s);
+            a.innerHTML = s;
+        })();
+    </script>
+
+
+    <!-- Youtube -->
+    <script type="text/javascript">
+        var player1;
+        var player2;
+
+        function onYouTubeIframeAPIReady() {
+            player1 = new YT.Player('player1', {
+                height: '360',
+                width: '640',
+                videoId: 'spUNpyF58BY', // https://www.youtube.com/watch?v=spUNpyF58BY
+                playerVars: {
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange1
+                }
+            });
+
+            player2 = new YT.Player('player2', {
+                height: '360',
+                width: '640',
+                videoId: '9sHouAjgku4', // https://www.youtube.com/watch?v=9sHouAjgku4
+                playerVars: {
+                    'controls': 0,
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange2
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // You can perform actions when a player is ready,
+            // but avoid starting playback here if you want them synced.
+        }
+
+        var state1 = 'loading';
+        var state2 = 'loading';
+        function onPlayerStateChange1(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                // When the primary player starts playing,
+                // set the secondary player's time and play it.
+                var currentTime = player1.getCurrentTime();
+                player2.seekTo(currentTime, true);
+                player2.playVideo();
+            } else if (event.data === YT.PlayerState.PAUSED) {
+                // When the primary player is paused, pause the secondary player.
+                player2.pauseVideo();
+                var currentTime = player1.getCurrentTime();
+                player2.seekTo(currentTime, true);
+            }
+        }
+        function onPlayerStateChange2(event) {
+        }
+    </script>
+
+    <script src="https://www.youtube.com/iframe_api" async></script>
 </body>
 
 </html>
