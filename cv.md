@@ -41,19 +41,25 @@ years
 I've created (and open-sourced) a framework to facilitate offloading work from the UI thread before C#
 got its async/await — but even after .net Tasks and async code it made sense to use due to improved readability, graceful shutdown, management of tasks inflight.
 
-### AWS
+Mostly I've worked with **AWS**.
 
-## Other competencies, less preferable
+## Other competencies
 
-* C++
+* C++/STL/boost
 * Android, Angular, Java/Kotlin, Dart+Flutter,
 * some React, Vue, JS, TS, Svelte
 * Python
 
 ## Experiences
 
-* Nov 2017—#####, **Ring Ukraine**, Software Engineer  
+* Jan 2021—Oct 2026, **Squad**, Senior Software Engineer, Software Architect  
+Building/maintaining high-volume high-load distributed microservices.
+
+* Nov 2017—Dec 2020, **Ring Ukraine**, Software Engineer  
 I worked on various microservices in Java, Go, C++. Meanwhile, I used AWS ec2, s3, DynamoDB and other services; kubernetes and helm.
+
+* Nov 2017—Sep 2019, **Horos.tech**, Consultant/Advisor  
+I helped with C++, distributed computing and cloud.
 
 * Oct 2016—Nov 2017, **Epam**, Senior Developer  
 I worked on CoreOS-based solution that runs containers in kubernetes. The language of choice was **Go**. My primary focus was on networking.
@@ -75,6 +81,10 @@ I worked to improve performance of C++ code in the Sonaray project. The project 
 
 * 2002—2007, Kyiv Taras Shevchenko Universtity  
 Department of Computer Sciences, obtained dimplomas:
-banchelor of applied mathematics, specialist of Social Informatics.
+**banchelor** of applied mathematics, **specialist** of Social Informatics.
 
 * 1999—2002, Ukrainian Lyceum of Physics and Math
+
+## Spoken languages
+
+**Ukrainian** (fluent), **English** (C1), **French** (B1), **German** (B1)
